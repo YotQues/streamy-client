@@ -8,8 +8,6 @@ import StreamDelete from './streams/StreamDelete';
 import StreamList from './streams/StreamList';
 import StreamShow from './streams/StreamShow';
 
-/* import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'; */
-
 const App = (props) => {
   return (
     <div className="ui container" >
