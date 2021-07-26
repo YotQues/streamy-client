@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createStream } from "../../actions"
+import history from "../../history";
 
 class StreamCreate extends Component {
   renderError = ({ error, touched, }) => {
@@ -26,8 +27,9 @@ class StreamCreate extends Component {
     );
   }
 
-  onSubmit = formValues => {
-    this.props.createStream(formValues);
+  onSubmit = async formValues => {
+    await this.props.createStream(formValues);
+    history.pushT("/");
   }
 
   render() {
