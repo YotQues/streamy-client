@@ -45,10 +45,7 @@ const validate = (formValues) => {
     errors.title = 'You must enter a valid title';
   if (!formValues.description)
     errors.description = 'You must enter a description';
-  // if (errors.title || errors.description)
   return errors;
-
-  // return;
 };
 
 export default reduxForm({
