@@ -12,7 +12,7 @@ class StreamEdit extends React.Component {
   }
 
   onSubmit = async formValues => {
-    await editStream(this.props.match.params.id, formValues);
+    await this.props.editStream(this.props.match.params.id, formValues);
     history.push("/");
   }
 
