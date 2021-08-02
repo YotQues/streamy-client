@@ -48,8 +48,8 @@ export const editStream = (id, formValues) =>
     dispatch({ type: EDIT_STREAM, payload: response.data });
   };
 
-export const deleteStream = (id) =>
+export const deleteStream = id =>
   async dispatch => {
     await streams.delete(`streams/${id}`);
     dispatch({ type: DELETE_STREAM, payload: id });
-  }
+  };
