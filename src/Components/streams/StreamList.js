@@ -23,6 +23,8 @@ class StreamList extends Component {
     }
   }
 
+  renderStreamKey = (stream) => stream.userId === this.props.currentUserId ? <small className="ui secondary"> (stream key: {stream.id})</small> : null;
+
   renderList = () => {
     return this.props.streams.map(stream => {
       return (
@@ -32,6 +34,7 @@ class StreamList extends Component {
           <div className="content">
             <div className="header">
               <Link to={`/streams/${stream.id}`}>{stream.title}</Link>
+              {this.renderStreamKey(stream)}
             </div>
             <div className="description">
               {stream.description}
