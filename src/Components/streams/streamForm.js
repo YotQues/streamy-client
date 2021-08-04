@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from 'react';
+import { Field, Form } from 'react-final-form';
 
-class StreamForm extends Component {
-  renderError = ({ error, touched, }) => {
+const StreamForm = (props) => {
+  const renderError = ({ error, touched, }) => {
     if (touched && error)
       return (
         <div className="ui error message">
@@ -12,32 +12,37 @@ class StreamForm extends Component {
     return null;
   }
 
-  renderInput = ({ input, label, meta }) => {
+  const renderInput = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : 'field'}`;
 
     return (
       <div className={className}>
         <label>{label}</label>
         <input {...input} autoComplete="off" />
-        {this.renderError(meta)}
+        {renderError(meta)}
       </div>
     );
   }
 
-  onSubmit = async formValues => {
-    this.props.onSubmit(formValues);
+  const onSubmit = formValues => {
+    props.onSubmit(formValues);
   }
 
-  render() {
-    return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
-        <Field name="title" component={this.renderInput} type="text" label="Enter Title" />
-        <Field name="description" component={this.renderInput} type="text" label="Enter Description" />
-        <button className="ui button primary">Submit</button>
-      </form>
-    );
-  }
-}
+  return (
+    <Form
+      initialValues={props.initialValues}
+      onSubmit={onSubmit}
+      validate={validate}
+      render={({ handleSubmit }) => (
+        <form onSubmit={handleSubmit} className="ui form error">
+          <Field name="title" component={renderInput} type="text" label="Enter Title" />
+          <Field name="description" component={renderInput} type="text" label="Enter Description" />
+          <button className="ui button primary">Submit</button>
+        </form>
+      )}
+    />
+  );
+};
 
 const validate = (formValues) => {
   const errors = {};
@@ -48,7 +53,4 @@ const validate = (formValues) => {
   return errors;
 };
 
-export default reduxForm({
-  form: 'streamForm',
-  validate,
-})(StreamForm);
+export default StreamForm;

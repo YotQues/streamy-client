@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStream } from "../../actions"
 import history from "../../history";
-import StreamForm from "./StreamForm";
+import StreamForm from "./streamForm";
 
 class StreamCreate extends Component {
-  onSubmit = async formValues => {
-    await this.props.createStream(formValues);
-    history.push("/");
+  onSubmit = formValues => {
+    (async () => {
+      await this.props.createStream(formValues);
+      history.push("/");
+    })()
   }
 
   render() {
