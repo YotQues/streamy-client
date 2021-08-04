@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -16,7 +15,7 @@ class StreamShow extends Component {
       return <div>Loading...</div>;
 
     const { title, description } = this.props.stream;
-    
+
     return (
       <div>
         <h1>{title}</h1>
